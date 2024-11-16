@@ -6,7 +6,7 @@ import sys  # Import sys to allow program exit when needed
 # Initialize Pygame library to set up the game environment
 pygame.init()
 
-# Set up the display dimensions
+# Set up the display dimensions (mesured in pixels)
 screen_width = 800  # Width of the game window
 screen_height = 600  # Height of the game window
 screen = pygame.display.set_mode((screen_width, screen_height))  # Create the game window
@@ -40,6 +40,8 @@ font = pygame.font.Font(None, 74)  # Create a font object with size 74
 #       pygame.Rect(x, y, width, height)
 # "//" is called a floor operator in python it divides number and rounds to the nearest integer
 #       ex: 4 // 1.5 = 3
+# We need to use this because '/' in python does not always return integers
+#       ex: 4 / 1.5 = 2.66666...
 
 player1 = pygame.Rect(30, (screen_height // 2) - (paddle_height // 2), paddle_width, paddle_height)  # Left paddle
 player2 = pygame.Rect(screen_width - 40, (screen_height // 2) - (paddle_height // 2), paddle_width, paddle_height)  # Right paddle
@@ -88,6 +90,10 @@ while running:
         ball.center = (screen_width // 2, screen_height // 2)  # Reset the ball to the center
         ball_speed_x = -ball_speed_x  # Send ball to the opposite direction
 
+#-------------------------------------------------------------------------
+# Add Code to end game after 5 points have been scored by either player
+#-------------------------------------------------------------------------
+
     # Update the screen with new positions and clear previous frame
     screen.fill(black)  # Fill the background with black
     pygame.draw.rect(screen, white, player1)  # Draw Player 1 paddle
@@ -98,5 +104,5 @@ while running:
     score_text = font.render(f'{player1_score}  {player2_score}', True, white)  # Render the score text
     screen.blit(score_text, (screen_width // 2 - 50, 20))  # Draw the score text at the top center
 
-    pygame.display.flip()  # Update the display with new visuals
+    pygame.display.flip()  # Update the display with new visuals every tick
     clock.tick(60)  # Limit the game to 60 frames per second
