@@ -1,6 +1,8 @@
 import pygame  # Import the Pygame library for game development
 import sys  # Import sys to allow program exit when needed
 
+# ------------------------------------------------------------------
+
 # Initialize Pygame library to set up the game environment
 pygame.init()
 
@@ -17,7 +19,7 @@ white = (255, 255, 255)  # White color for paddles, ball, and text
 # Paddle and ball settings
 paddle_width = 10  # Width of the paddles
 paddle_height = 100  # Height of the paddles
-ball_size = 20  # Size of the square ball
+ball_size = 20  # Size of the ball
 
 player_speed = 6  # Speed of the paddles
 ball_speed_x = 5  # Horizontal speed of the ball
@@ -33,6 +35,12 @@ font = pygame.font.Font(None, 74)  # Create a font object with size 74
 # ------------------------------------------------------------------
 
 # Set the initial positions of the paddles and ball
+
+# Rect is a built in object in pygame that stands for Rectangle
+#       pygame.Rect(x, y, width, height)
+# "//" is called a floor operator in python it divides number and rounds to the nearest integer
+#       ex: 4 // 1.5 = 3
+
 player1 = pygame.Rect(30, (screen_height // 2) - (paddle_height // 2), paddle_width, paddle_height)  # Left paddle
 player2 = pygame.Rect(screen_width - 40, (screen_height // 2) - (paddle_height // 2), paddle_width, paddle_height)  # Right paddle
 ball = pygame.Rect(screen_width // 2, screen_height // 2, ball_size, ball_size)  # Ball at the center of the screen
